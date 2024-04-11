@@ -34,7 +34,7 @@ const CallList: React.FC<CallListProps> = ({ calls }) => {
       setOpenCall(true);
     };
     
-    const handleCloseUserCard = () => {
+    const handleCloseCallModal = () => {
         setOpenCall(false);
         setSelectedCall(null);
     };
@@ -61,44 +61,37 @@ const CallList: React.FC<CallListProps> = ({ calls }) => {
     };
 
     return (
-          <>
-            {!selectedCall && (
-                <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell className='px-2 md:px-16 py-3 md:py-5 text-left text-xs md:text-base font-medium text-gray-500 uppercase tracking-wider'>Date et heure</TableCell>
-                            <TableCell className="px-2 md:px-16 py-3 md:py-5 text-left text-xs md:text-base font-medium text-gray-500 uppercase tracking-wider" align="right">Appelant</TableCell>
-                            <TableCell className='px-2 md:px-16 py-3 md:py-5 text-left text-xs md:text-base font-medium text-gray-500 uppercase tracking-wider' align="right">Durée</TableCell>
-                            <TableCell className='px-2 md:px-16 py-3 md:py-5 text-left text-xs md:text-base font-medium text-gray-500 uppercase tracking-wider' align="right">Sujet</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {calls.map((call) => (
-                        <TableRow
-                        key={call.id}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        onClick={() => handleClick(call)} 
-                        className="cursor-pointer hover:bg-gray-100"
-                        >
-                            <TableCell component="th" scope="row">{formatDate(call.date)}</TableCell>
-                            <TableCell align="right">{formatPhoneNumber(call.from)}</TableCell>
-                            <TableCell align="right">{formatDuration(call.duration)}</TableCell>
-                            <TableCell align="right">{call.subject}</TableCell>
-                        </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            )
-            }
-
-            {selectedCall && openCall &&(
-                <CallModal call={selectedCall} onClose={handleCloseUserCard} />
-            )
-            }
-        </>
-    );
+        <div className={selectedCall ? "bg-transparent" : ""}>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell className='px-2 md:px-16 py-3 md:py-5 text-left text-xs md:text-base font-medium text-gray-500 uppercase tracking-wider'>Date et heure</TableCell>
+                  <TableCell className="px-2 md:px-16 py-3 md:py-5 text-left text-xs md:text-base font-medium text-gray-500 uppercase tracking-wider" align="right">Appelant</TableCell>
+                  <TableCell className='px-2 md:px-16 py-3 md:py-5 text-left text-xs md:text-base font-medium text-gray-500 uppercase tracking-wider' align="right">Durée</TableCell>
+                  <TableCell className='px-2 md:px-16 py-3 md:py-5 text-left text-xs md:text-base font-medium text-gray-500 uppercase tracking-wider' align="right">Sujet</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {calls.map((call) => (
+                  <TableRow
+                    key={call.id}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    onClick={() => handleClick(call)}
+                    className="cursor-pointer hover:bg-gray-100"
+                  >
+                    <TableCell component="th" scope="row">{formatDate(call.date)}</TableCell>
+                    <TableCell align="right">{formatPhoneNumber(call.from)}</TableCell>
+                    <TableCell align="right">{formatDuration(call.duration)}</TableCell>
+                    <TableCell align="right">{call.subject}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {selectedCall && <CallModal call={selectedCall} onClose={handleCloseCallModal} />}
+        </div>
+      );
   };
 
 export default CallList;
