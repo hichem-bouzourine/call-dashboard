@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Call Dashboard",
@@ -16,13 +14,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <div className='main'>
-        <div className='gradient'></div>
-      </div>
-
-      <div className='app'>
-        {children}
-      </div>
+      <body>
+        <AppRouterCacheProvider>
+        <div className='main'>
+          <div className='gradient'></div>
+        </div> 
+        <div className='app'>
+          {children}
+        </div>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
