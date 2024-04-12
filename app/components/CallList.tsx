@@ -67,7 +67,7 @@ const CallList: React.FC<CallListProps> = ({ calls }) => {
       <div className="flex justify-between mb-4">
         <div>
           <label htmlFor="filter" className="mr-2 cursor-pointer">Filtrer par sujet :</label>
-          <select id="filter" name="filter" onChange={handleFilterChange} className="px-4 py-2 bg-gray-200 rounded-md cursor-pointer outline-none">
+          <select id="filter" name="filter" value={filter || "all"} onChange={handleFilterChange} className="px-4 py-2 bg-gray-200 rounded-md cursor-pointer outline-none">
             <option value="all">Tous</option>
             <option value="appointment">Prise de rendez-vous</option>
             <option value="information">Demande de renseignements</option>
