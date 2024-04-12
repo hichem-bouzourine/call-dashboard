@@ -18,7 +18,35 @@ export const formatDate = (dateString: string) => {
 export const formatDuration = (duration: number) => {
   const minutes = Math.floor(duration / 60);
   const seconds = Math.floor(duration % 60);
-  return `${minutes} minute(s) et ${seconds} seconde(s)`;
+
+  let min = "minutes";
+  let sec = "secondes";
+  if (minutes === 1) {
+    min = "minute";
+  }
+
+  if (seconds === 1) {
+    sec = "seconde";
+  }
+
+  return `${minutes} ${min} et ${seconds} ${sec}`;
+};
+
+export const formatDurationFromMinutes = (durationInMinutes: number) => {
+  const minutes = Math.floor(durationInMinutes);
+  const seconds = Math.round((durationInMinutes - minutes) * 60); // Convertir les décimales en secondes
+
+  let min = "minutes";
+  let sec = "secondes";
+  if (minutes === 1) {
+    min = "minute";
+  }
+
+  if (seconds === 1) {
+    sec = "seconde";
+  }
+
+  return `${minutes} ${min} et ${seconds} ${sec}`;
 };
 
 export const formatSubject = (subject: string) => {
