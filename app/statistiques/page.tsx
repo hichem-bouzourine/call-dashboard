@@ -55,6 +55,7 @@ const StatisticsPage: React.FC = () => {
       <div>
         {/* on place les statistiques ici */}
         <TempsMoy destinataire={selectedTo}/>
+        <FrequentSubject destinataire={selectedTo}/>
       </div>
     </div>
   );
