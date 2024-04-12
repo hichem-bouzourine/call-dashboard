@@ -4,6 +4,7 @@ import { formatPhoneNumber } from '@/utils';
 import TempsMoy from '@/app/components/TempsMoy';
 import FrequentSubject from '../components/FrequentSubject';
 import UniqueCallers from '@/app/components/UniqueCallers';
+import DailySavedTime from '../components/DailySavedTime';
 
 interface Call {
   id: string;
@@ -57,6 +58,7 @@ const StatisticsPage: React.FC = () => {
         {/* on place les statistiques ici */}
         <TempsMoy destinataire={selectedTo}/>
         <FrequentSubject destinataire={selectedTo}/>
+        <DailySavedTime destinataire={selectedTo}/>
         <UniqueCallers destinataire={selectedTo}/>
       </div>
     </div>
