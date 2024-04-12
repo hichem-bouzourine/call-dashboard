@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { formatPhoneNumber, formatDate, formatDuration } from '@/utils';
+import { formatPhoneNumber, formatDate, formatDuration, formatSubject } from '@/utils';
 
 interface Call {
   id: string;
@@ -99,7 +99,7 @@ const CallList: React.FC<CallListProps> = ({ calls }) => {
                   <TableCell component="th" scope="row">{formatDate(call.date)}</TableCell>
                   <TableCell align="right">{formatPhoneNumber(call.from)}</TableCell>
                   <TableCell align="right">{formatDuration(call.duration)}</TableCell>
-                  <TableCell align="right">{call.subject}</TableCell>
+                  <TableCell align="right">{formatSubject(call.subject)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

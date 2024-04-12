@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, sub } from 'date-fns';
 
 export const formatPhoneNumber = (phoneNumber: string) => {
     // Check if the phone number starts with "+33"
@@ -19,4 +19,15 @@ export const formatDuration = (duration: number) => {
   const minutes = Math.floor(duration / 60);
   const seconds = duration % 60;
   return `${minutes} minute(s) et ${seconds} seconde(s)`;
+};
+
+export const formatSubject = (subject: string) => {
+  switch (subject) {
+    case  "appointment" : return "Rendez-vous";
+    case  "information" : return "Demande de renseignements";
+    case  "prescription" : return "Prescription";
+    case  "other" : return "Autre";
+      
+    default : return "Autre"; 
+  }
 };
