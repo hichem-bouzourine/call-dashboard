@@ -5,6 +5,7 @@ import TempsMoy from '@/app/components/TempsMoy';
 import FrequentSubject from '../components/FrequentSubject';
 import UniqueCallers from '@/app/components/UniqueCallers';
 import DailySavedTime from '../components/DailySavedTime';
+import Link from 'next/link';
 
 interface Call {
   id: string;
@@ -46,11 +47,19 @@ const StatisticsPage: React.FC = () => {
         <div className="flex justify-between mb-4">
           <div>
             <label htmlFor="fetch" className="mr-2">Choisissez un destinataire:</label>
-            <select id="fetch" name="fetch" onChange={(e) => fetchCallsByDest(e.target.value)} className="px-2 py-2 bg-gray-200 rounded-md">
+            <select id="fetch" name="fetch" onChange={(e) => fetchCallsByDest(e.target.value)} className="px-2 py-2 bg-gray-200 rounded-md hover:bg-slate-300">
               {uniqueTo.map((to) => (
                 <option key={to} value={to}>{formatPhoneNumber(to)}</option>
               ))}
             </select>
+          </div>
+          <div>
+            <Link 
+              href={"/calls"}
+              className="bg-gray-200 rounded-md p-3 hover:bg-slate-600 hover:text-white transition duration-2"
+            >
+              Retour aux appels
+            </Link>
           </div>
         </div>
       </div>

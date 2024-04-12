@@ -66,8 +66,8 @@ const CallList: React.FC<CallListProps> = ({ calls }) => {
     <div className={selectedCall ? "bg-transparent" : ""}>
       <div className="flex justify-between mb-4">
         <div>
-          <label htmlFor="filter" className="mr-2">Filtrer par sujet :</label>
-          <select id="filter" name="filter" onChange={handleFilterChange} className="px-4 py-2 bg-gray-200 rounded-md">
+          <label htmlFor="filter" className="mr-2 cursor-pointer">Filtrer par sujet :</label>
+          <select id="filter" name="filter" onChange={handleFilterChange} className="px-4 py-2 bg-gray-200 rounded-md cursor-pointer outline-none">
             <option value="all">Tous</option>
             <option value="appointment">Prise de rendez-vous</option>
             <option value="information">Demande de renseignements</option>
@@ -75,7 +75,7 @@ const CallList: React.FC<CallListProps> = ({ calls }) => {
             <option value="other">Autre</option>
           </select>
         </div>
-        <button className="px-4 py-2 bg-gray-200 rounded-md" onClick={() => applyFilter('all')}>Réinitialiser</button>
+        <button className="px-4 py-2 bg-gray-200 rounded-md" onClick={() => applyFilter('all')}>Réinitialiser le filtre</button>
       </div>
       <div style={{ overflowY: 'auto'}}> 
         <TableContainer component={Paper}>

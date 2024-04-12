@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import CallList from '../components/CallList';
 import { formatPhoneNumber } from '@/utils';
+import Link from 'next/link';
 
 interface Call {
   id: string;
@@ -40,19 +41,31 @@ const CallsPage: React.FC = () => {
   return (
     <div className='flex flex-col gap-5'>
       <div className="flex flex-col gap-3">
-        <div className="flex justify-between mb-4">
-          <div>
-            <label htmlFor="fetch" className="mr-2">Choisissez un destinataire:</label>
-            <select id="fetch" name="fetch" onChange={(e) => fetchCallsByDest(e.target.value)} className="px-2 py-2 bg-gray-200 rounded-md">
-              {uniqueTo.map((to) => (
-                <option key={to} value={to}>{formatPhoneNumber(to)}</option>
-              ))}
-            </select>
+        <div className="flex flex-col justify-between mb-2">
+          <div className='flex justify-end mb-2'>
+            <Link 
+              href={"/statistiques"}
+              className="bg-gray-200 rounded-md p-3 w-fit hover:bg-slate-600 hover:text-white transition duration-2"
+              >
+              Aller aux statistiques
+            </Link>
           </div>
-          <button
-            className="px-4 py-2 bg-gray-200 rounded-md"
-            onClick={()=> fetchCallsByDest(selectedTo!)}
-          >Rafraichir les données</button>
+          <div className='flex justify-between my-4'>
+            <div>
+              <label htmlFor="fetch" className="mr-2">Choisissez un destinataire:</label>
+              <select id="fetch" name="fetch" onChange={(e) => fetchCallsByDest(e.target.value)} className="px-2 py-2 bg-gray-200 rounded-md outline-none">
+                {uniqueTo.map((to) => (
+                  <option key={to} value={to}>{formatPhoneNumber(to)}</option>
+                ))}
+              </select>
+            </div>
+            <button
+              className="px-4 py-2 w-fit bg-gray-200 rounded-md"
+              onClick={()=> fetchCallsByDest(selectedTo!)}
+              >
+              Rafraichir les données
+            </button>
+          </div>
         </div>
       </div>
       <CallList calls={calls} />
