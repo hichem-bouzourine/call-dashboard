@@ -1,4 +1,4 @@
-import { format, sub } from 'date-fns';
+import { format } from 'date-fns';
 
 export const formatPhoneNumber = (phoneNumber: string) => {
     // Check if the phone number starts with "+33"
