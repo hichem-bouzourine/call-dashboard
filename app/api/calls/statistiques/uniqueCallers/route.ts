@@ -18,14 +18,15 @@ export const GET = async (req: Request, res: Response) => {
     return new Response("No calls found for this destination", { status: 404 });
   }
 
-  // get number of unique callers
-    const uniqueCallers = new Set<string>();
-    filteredCalls.forEach(call => {
-      uniqueCallers.add(call.from);
-    });
+  const uniqueCallersMap = new Map<string, number>();
+  filteredCalls.forEach(call => {
+    if (call.from) {
+      const count = uniqueCallersMap.get(call.from) || 0;
+      uniqueCallersMap.set(call.from, count + 1);
+    }
+  });
 
-    // convert set to array in order to send it as a JSON response
-    const uniqueCallersArray = Array.from(uniqueCallers);
+  const uniqueCallersArray = Array.from(uniqueCallersMap);
 
 
   return new Response(JSON.stringify(uniqueCallersArray), { status: 200 });
