@@ -16,6 +16,7 @@ interface Call {
 const CallsPage: React.FC = () => {
   const [calls, setCalls] = useState<Call[]>([]);
   const [uniqueTo, setUniqueTo] = useState<string[]>([]);
+  const [selectedTo, setSelectedTo] = useState<string | null>(null);
 
   const fetchCalls = async () => {
     const res = await fetch(`/api/calls`);
@@ -28,6 +29,7 @@ const CallsPage: React.FC = () => {
   const fetchCallsByDest = async (destinataire: string) => {
     const res = await fetch(`/api/calls?to=${destinataire}`);
     const data = await res.json();
+    setSelectedTo(destinataire);
     setCalls(data);
   };
 
@@ -47,6 +49,10 @@ const CallsPage: React.FC = () => {
               ))}
             </select>
           </div>
+          <button
+            className="px-4 py-2 bg-gray-200 rounded-md"
+            onClick={()=> fetchCallsByDest(selectedTo!)}
+          >Rafraichir les données</button>
         </div>
       </div>
       <CallList calls={calls} />
