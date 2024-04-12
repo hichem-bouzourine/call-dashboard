@@ -47,7 +47,7 @@ const StatisticsPage: React.FC = () => {
         <div className="flex justify-between mb-4">
           <div>
             <label htmlFor="fetch" className="mr-2">Choisissez un destinataire:</label>
-            <select id="fetch" name="fetch" onChange={(e) => fetchCallsByDest(e.target.value)} className="px-2 py-2 bg-gray-200 rounded-md hover:bg-slate-300">
+            <select id="fetch" name="fetch" onChange={(e) => fetchCallsByDest(e.target.value)} className="px-2 py-2 bg-gray-200 rounded-md hover:bg-slate-500 hover:text-white cursor-pointer">
               {uniqueTo.map((to) => (
                 <option key={to} value={to}>{formatPhoneNumber(to)}</option>
               ))}

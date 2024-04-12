@@ -75,7 +75,7 @@ const CallList: React.FC<CallListProps> = ({ calls }) => {
             <option value="other">Autre</option>
           </select>
         </div>
-        <button className="px-4 py-2 bg-gray-200 rounded-md" onClick={() => applyFilter('all')}>Réinitialiser le filtre</button>
+        <button className="bg-gray-200 rounded-md p-3 w-fit hover:bg-slate-600 hover:text-white transition duration-2" onClick={() => applyFilter('all')}>Réinitialiser le filtre</button>
       </div>
       <div style={{ overflowY: 'auto'}}> 
         <TableContainer component={Paper}>

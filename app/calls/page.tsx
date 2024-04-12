@@ -45,7 +45,7 @@ const CallsPage: React.FC = () => {
           <div className='flex justify-end mb-2'>
             <Link 
               href={"/statistiques"}
-              className="bg-gray-200 rounded-md p-3 w-fit hover:bg-slate-600 hover:text-white transition duration-2"
+              className="bg-gray-200 rounded-md p-3 w-fit hover:bg-slate-500 hover:text-white transition duration-2"
               >
               Aller aux statistiques
             </Link>
@@ -53,14 +53,14 @@ const CallsPage: React.FC = () => {
           <div className='flex justify-between my-4'>
             <div>
               <label htmlFor="fetch" className="mr-2">Choisissez un destinataire:</label>
-              <select id="fetch" name="fetch" onChange={(e) => fetchCallsByDest(e.target.value)} className="px-2 py-2 bg-gray-200 rounded-md outline-none">
+              <select id="fetch" name="fetch" onChange={(e) => fetchCallsByDest(e.target.value)} className="px-2 py-2 bg-gray-200 rounded-md  cursor-pointer outline-none">
                 {uniqueTo.map((to) => (
                   <option key={to} value={to}>{formatPhoneNumber(to)}</option>
                 ))}
               </select>
             </div>
             <button
-              className="px-4 py-2 w-fit bg-gray-200 rounded-md"
+              className="bg-gray-200 rounded-md p-2 w-fit hover:bg-slate-500 hover:text-white transition duration-2"
               onClick={()=> fetchCallsByDest(selectedTo!)}
               >
               Rafraichir les données
