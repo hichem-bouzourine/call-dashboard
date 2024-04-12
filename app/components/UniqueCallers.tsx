@@ -1,3 +1,4 @@
+"use client"
 import {formatPhoneNumber } from '@/utils';
 import React, { useEffect } from 'react';
 import Skeleton from '@mui/material/Skeleton';
