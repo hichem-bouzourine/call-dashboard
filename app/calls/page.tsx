@@ -38,7 +38,6 @@ const CallsPage: React.FC = () => {
   return (
     <div className='flex flex-col gap-5'>
       <div className="flex flex-col gap-3">
-        <h1 className='text-2xl text-slate-500'>Journal des appels</h1>
         <div className="flex justify-between mb-4">
           <div>
             <label htmlFor="fetch" className="mr-2">Choisissez un destinataire:</label>
