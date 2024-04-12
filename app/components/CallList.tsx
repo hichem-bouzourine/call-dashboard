@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { format } from 'date-fns';
+import { formatPhoneNumber, formatDate, formatDuration } from '@/utils';
 
 
 interface Call {
@@ -45,27 +45,6 @@ const CallList: React.FC<CallListProps> = ({ calls }) => {
     const handleCloseCallModal = () => {
         setOpenCall(false);
         setSelectedCall(null);
-    };
-    
-    const formatDate = (dateString: string) => {
-        return format(new Date(dateString), "dd/MM/yyyy HH:mm:ss");
-    };
-
-    const formatDuration = (duration: number) => {
-        const minutes = Math.floor(duration / 60);
-        const seconds = duration % 60;
-        return `${minutes} minute(s) et ${seconds} seconde(s)`;
-    };
-
-    const formatPhoneNumber = (phoneNumber: string) => {
-        // Check if the phone number starts with "+33"
-        if (phoneNumber.startsWith("+33")) {
-          // Replace "+33" with "0"
-          return phoneNumber.replace("+33", "0");
-        } else {
-          // If the phone number doesn't start with "+33", return it unchanged
-          return phoneNumber;
-        }
     };
 
     const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
