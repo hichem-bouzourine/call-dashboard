@@ -1,10 +1,10 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { formatPhoneNumber } from '@/utils';
-import TempsMoy from '@/app/components/TempsMoy';
-import FrequentSubject from '../components/FrequentSubject';
-import UniqueCallers from '@/app/components/UniqueCallers';
-import DailySavedTime from '../components/DailySavedTime';
+import TempsMoy from '@/components/TempsMoy';
+import FrequentSubject from '../../components/FrequentSubject';
+import UniqueCallers from '@/components/UniqueCallers';
+import DailySavedTime from '../../components/DailySavedTime';
 import Link from 'next/link';
 
 interface Call {
@@ -23,11 +23,10 @@ const StatisticsPage: React.FC = () => {
   const [selectedTo, setSelectedTo] = useState<string | null>(null);
 
   const fetchCalls = async () => {
-    const res = await fetch(`/api/calls`);
+    const res = await fetch(`/api/calls/agents`);
     const data = await res.json();
-    const uniqueTo: string[] = Array.from(new Set(data.map((call: Call) => call.to)));
-    setUniqueTo(uniqueTo);
-    fetchCallsByDest(uniqueTo[0]);
+    setUniqueTo(data);
+    fetchCallsByDest(data[0]);
   };
 
   const fetchCallsByDest = async (destinataire: string) => {

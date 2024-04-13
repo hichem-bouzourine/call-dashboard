@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-import CallList from '../components/CallList';
+import CallList from '../../components/CallList';
 import { formatPhoneNumber } from '@/utils';
 import Link from 'next/link';
 
@@ -18,20 +18,22 @@ const CallsPage: React.FC = () => {
   const [calls, setCalls] = useState<Call[]>([]);
   const [uniqueTo, setUniqueTo] = useState<string[]>([]);
   const [selectedTo, setSelectedTo] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fetchCalls = async () => {
-    const res = await fetch(`/api/calls`);
+    const res = await fetch(`/api/calls/agents`);
     const data = await res.json();
-    const uniqueTo: string[] = Array.from(new Set(data.map((call: Call) => call.to)));
-    setUniqueTo(uniqueTo);
-    fetchCallsByDest(uniqueTo[0]);
+    setUniqueTo(data);
+    fetchCallsByDest(data[0]);
   };
 
   const fetchCallsByDest = async (destinataire: string) => {
+    setLoading(true);
     const res = await fetch(`/api/calls?to=${destinataire}`);
     const data = await res.json();
     setSelectedTo(destinataire);
     setCalls(data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -68,7 +70,7 @@ const CallsPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <CallList calls={calls} />
+      <CallList calls={calls} loading={loading} />
     </div>
   );
 };
